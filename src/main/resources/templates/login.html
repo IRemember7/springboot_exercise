@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+</head>
+<link  rel="stylesheet" th:href="@{css/signin.css}">
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
+<script th:src="@{js/bootstrap.min.js}" type="application/javascript"></script>
+<body>
+<form class="form-signin" action="/login" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">用户登录</h1>
+    <label class="sr-only">账号：</label>
+    <input type="text" name="accountId" class="form-control" placeholder="请输入账号" required="" autofocus="">
+    <label class="sr-only">密码</label>
+    <input type="password"  name="userPassword" class="form-control" placeholder="请输入密码" required="">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+</form>
+</body>
+</html>
