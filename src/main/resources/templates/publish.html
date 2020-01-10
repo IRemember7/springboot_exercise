@@ -11,31 +11,32 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h2>
             <hr>
-            <form>
+            <form method="post" onsubmit="return false" action="#">
                 <div class="form-group">
                     <label for="title">问题标题（简单扼要）</label>
-                    <input type="text" class="form-control" th:value="${title}" id="title" name="title"
+                    <input type="text" class="form-control"  id="title" name="title"
                            placeholder="问题标题……"
                            autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="description">问题补充 (必填，请参照右侧提示):</label>
-                    <textarea name="description" id="description" th:text="${description}" style="resize:none"
+                    <textarea name="description" id="description" style="resize:none"
                               class="form-control"
                               cols="30"
                               rows="10"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="tag">添加标签:</label>
-                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag"
+                    <input type="text" class="form-control"  id="tag" name="tag"
                            autocomplete="off"
                            placeholder="输入标签，以，号分隔">
                 </div>
                 <div class="row">
                     <div class="alert alert-danger col-md-8" role="alert" style="margin-left: 15px"
-                    th:if="${session.user == null}">请先登录后再发起提问！！</div>
+                     th:if="${session.user == null}">请登录后再提问</div>
                     <div class="col-md-3"></div>
-                    <button type="submit" class="btn btn-default" style="margin-left: 240px">发布</button>
+                    <button type="submit" class="btn btn-default" style="margin-left: 240px"
+                            onclick="setCommon()">发布</button>
                 </div>
             </form>
         </div>
@@ -48,4 +49,27 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    function setCommon() {
+        var title = $("#title").val();
+        var description = $("#description").val();
+        var tag = $("#tag").val();
+        $.ajax({
+                type:"post",
+                url:"/publish",
+                data:{
+                    "title":title,
+                    "description":description,
+                    "tag":tag,
+                },
+                success:function (data) {
+                    alert(data.msg)
+                    if (data.msg =="问题提交成功！！")
+                        window.location.href="main"
+
+                }
+            }
+        )
+    }
+</script>
 </html>

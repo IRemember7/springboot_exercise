@@ -11,9 +11,9 @@ public class Question {
     private String  description;
     private Date createTime;
     private Date modifiedTime;
-    private User user;
     private String commentCount;
     private String viewCount;
     private String likeCount;
     private String tag;
+    private int creator; //多对一级联查询 问题创建者
 }

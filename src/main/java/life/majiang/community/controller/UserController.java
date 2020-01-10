@@ -19,7 +19,6 @@ public class UserController {
     @PostMapping("/login")
     public String userLogin(@RequestParam String accountId,
                             @RequestParam String userPassword,
-                            @RequestParam Map<String,Object> params,
                             HttpSession httpSession){
         if (StringUtils.isEmpty(accountId) || StringUtils.isEmpty(userPassword)) {
             httpSession.setAttribute("errorMsg", "用户名或密码不能为空");
@@ -27,8 +26,7 @@ public class UserController {
         }
         User user = userService.userLogin(accountId,userPassword);
         if (user !=null){
-            httpSession.setAttribute("user", user.getUserName());
-            httpSession.setAttribute("userId",user.getUserId() );
+            httpSession.setAttribute("user", user);
             return "redirect:/main";
         }else {
             httpSession.setAttribute("errorMsg", "登陆失败");
