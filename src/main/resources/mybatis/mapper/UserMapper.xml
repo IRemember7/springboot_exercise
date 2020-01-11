@@ -7,4 +7,13 @@
         select * from user
         where user_active=1 and account_id =#{accountId} and user_password = #{userPassword}
     </select>
+    <insert id="registerUser">
+        insert into user(account_id, user_img, user_name, user_password, user_create)
+        values (#{user.accountId},#{user.userImg},#{user.userName},#{user.userPassword},#{user.userCreate})
+    </insert>
+    <select id="findById" resultType="life.majiang.community.entity.User">
+        select *
+        from user
+        where user_id = #{creator}
+    </select>
 </mapper>

@@ -8,4 +8,8 @@
         insert into question(title, description, create_time,creator,tag)
         values (#{question.title},#{question.description},#{question.createTime},#{question.creator},#{question.tag})
     </insert>
+
+    <select id="getIndexQuestion" resultType="life.majiang.community.entity.Question">
+        select * from question where active = 1
+    </select>
 </mapper>

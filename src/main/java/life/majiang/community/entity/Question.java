@@ -15,5 +15,5 @@ public class Question {
     private String viewCount;
     private String likeCount;
     private String tag;
-    private int creator; //多对一级联查询 问题创建者
+    private int creator;
 }

@@ -9,13 +9,15 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-
+/*
+    文件保存
+ */
 public class FileSave {
-    private static final String FILE_UPLOAD_PATH ="D:/projectdev/" ;//上传文件的保存地址，根据部署设置自行修改
+    public static final String FILE_UPLOAD_PATH ="D:/projectdev/" ;//上传文件的保存地址，根据部署设置自行修改
 
-    public Result upload(MultipartFile file) {
+    public static String upload(MultipartFile file) {
         if (file.isEmpty()) {
-            return ResultGenerator.genFailResult("请选择文件");
+            return "请选择文件";
         }
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
@@ -34,9 +36,6 @@ public class FileSave {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Result result = ResultGenerator.genSuccessResult();
-        result.setData("/files/" + newFileName);
-//        result.setData(Constants.FILE_UPLOAD_PATH + newFileName);
-        return result;
+        return "/files/" + newFileName;
     }
 }

@@ -12,4 +12,5 @@ public class User {
     private String userPassword;
     private Date userCreate;
     private int userActive;
+    private String userImg;
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>用户注册</title>
+    <link  rel="stylesheet" th:href="@{css/signin.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
+    <script th:src="@{js/bootstrap.min.js}" type="application/javascript"></script>
+</head>
+<body>
+<form class="form-signin" action="/register" method="post" enctype="multipart/form-data">
+    <h1 class="h3 mb-3 font-weight-normal">用户注册</h1>
+    <label  class="sr-only">用户名：</label>
+    <input type="text" class="form-control" id="accountId" placeholder="请输入您的用户名" name="accountId">
+    <label  class="sr-only">昵称：</label>
+    <input type="text" class="form-control" id="username" placeholder="请输入您的昵称" name="userName">
+    <label  class="sr-only">密码</label>
+    <input type="password" class="form-control" id="userPassword" placeholder="请输入您的密码" name="userPassword">
+    <label  class="sr-only">头像上传</label>
+    <input type="file" id="inputImg" name="inputImg">
+    <p class="help-block">请选择一张图片作为您的头像</p>
+    <button type="submit" class="btn btn-lg btn-primary btn-block">注册</button>
+    <p class="help-block" th:text="${msg}" style="color: red"></p>
+</form>
+
+</body>
+</html>

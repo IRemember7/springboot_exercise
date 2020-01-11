@@ -14,4 +14,8 @@ public class UserService {
         User user = userMapper.userLogin(accountId,userPassword);
         return user;
     }
+
+    public int registerUser(User user) {
+        return userMapper.registerUser(user);
+    }
 }
