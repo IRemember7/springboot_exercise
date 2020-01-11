@@ -28,6 +28,24 @@
                             th:text="${#dates.format(question.createTime,'yyyy-MM-dd HH:mm')}"></span></span>
                 </div>
             </div>
+            <!-------------------------------------------   分页 ----------------------------------------------->
+            <nav aria-label="Page navigation" style="margin-left: 400px">
+                <ul class="pagination">
+                    <li th:class="${(nowPage!=1 && nowPage !=2)?'':'disabled'}"><a aria-label="Previous" th:href="@{/(page=1)}"><span aria-hidden="true">&lt;&lt;</span></a></li>
+                    <li th:class="${(nowPage!=1)?'':'disabled'}"><a aria-label="Previous"  th:href="@{/(page=${nowPage-1})}"><span aria-hidden="true">&lt;</span></a></li>
+                    <li th:if="${nowPage>2}" class =""><a th:href="@{/(page=${nowPage-2})}" th:text="${nowPage-2}"> </a></li>
+                    <li th:if="${nowPage>1}"class =""><a th:href="@{/(page=${nowPage-1})}" th:text="${nowPage-1}"> </a></li>
+
+                    <li class ="active"><a th:href="@{/(page=${nowPage})}" th:text="${nowPage}"> </a></li>
+                    <li th:if="${nowPage!=totalCount}"class =""><a th:href="@{/(page=${nowPage+1})}" th:text="${nowPage+1}"> </a></li>
+                    <li th:if="${nowPage!=totalCount-1 && nowPage !=totalCount}"class =""><a th:href="@{/(page=${nowPage+2})}" th:text="${nowPage+2}"> </a></li>
+
+                    <li th:if="${nowPage<3}" class =""><a th:href="@{/(page=${nowPage+3})}" th:text="${nowPage+3}"> </a></li>
+                    <li th:if="${nowPage<2}" class =""><a th:href="@{/(page=${nowPage+4})}" th:text="${nowPage+4}"> </a></li>
+                    <li th:class="${(nowPage!=totalCount)?'':'disabled'}"><a aria-label="Previous" th:href="@{/(page=${nowPage+1})}"><span aria-hidden="true" >&gt;</span></a></li>
+                    <li th:class="${(nowPage!=totalCount-1 && nowPage !=totalCount)?'':'disabled'}"><a aria-label="Previous" th:href="@{/(page=${totalCount})}"><span aria-hidden="true">&gt;&gt;</span></a></li>
+                </ul>
+            </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <h3>热门话题</h3>

@@ -16,4 +16,5 @@ public class Question {
     private String likeCount;
     private String tag;
     private int creator;
+    private int active;
 }

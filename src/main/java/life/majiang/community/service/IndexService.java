@@ -5,6 +5,7 @@ import life.majiang.community.dao.UserMapper;
 import life.majiang.community.entity.Question;
 import life.majiang.community.entity.Questiondto;
 import life.majiang.community.entity.User;
+import life.majiang.community.util.PageResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,8 @@ public class IndexService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<Questiondto> getIndexQuestion() {
-        List<Question> questions= questionMapper.getIndexQuestion();
+    public List<Questiondto> getIndexQuestion(PageResult pageResult) {
+        List<Question> questions= questionMapper.getIndexQuestion(pageResult.getCurrPage(),pageResult.getPageSize());
         List<Questiondto> questiondtos = new ArrayList<>();
         for (Question question : questions) {
             User user = userMapper.findById(question.getCreator());
@@ -30,5 +31,9 @@ public class IndexService {
             questiondtos.add(questiondto);
         }
         return questiondtos;
+    }
+
+    public int countQuestion() {
+        return questionMapper.countQuestion();
     }
 }

@@ -9,7 +9,11 @@
         values (#{question.title},#{question.description},#{question.createTime},#{question.creator},#{question.tag})
     </insert>
 
-    <select id="getIndexQuestion" resultType="life.majiang.community.entity.Question">
-        select * from question where active = 1
+    <select id="getIndexQuestion" parameterType="int" resultType="life.majiang.community.entity.Question">
+        select * from question where active = 1 ORDER BY create_time DESC limit #{page},#{size}
+    </select>
+
+    <select id="countQuestion" resultType="int">
+        SELECT COUNT(1) FROM question
     </select>
 </mapper>

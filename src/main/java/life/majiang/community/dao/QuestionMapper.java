@@ -10,7 +10,9 @@ import java.util.List;
 
 @Mapper
 public interface QuestionMapper {
-    public int insertQuestion(@Param("question")Question question);
+    int insertQuestion(@Param("question")Question question);
 
-    public List<Question> getIndexQuestion();
+    List<Question> getIndexQuestion(@Param("page")int page ,@Param("size") int size);
+
+    int countQuestion();
 }
