@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>用户登录</title>
+    <head th:insert="~{import :: head}"></head>
+    <link  rel="stylesheet" th:href="@{css/signin.css}">
 </head>
-<link  rel="stylesheet" th:href="@{css/signin.css}">
-<link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
-<script th:src="@{js/bootstrap.min.js}" type="application/javascript"></script>
 <body>
 <form class="form-signin" action="/login" method="post">
     <h1 class="h3 mb-3 font-weight-normal">用户登录</h1>
