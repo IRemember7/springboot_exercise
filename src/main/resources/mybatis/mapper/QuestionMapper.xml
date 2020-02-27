@@ -14,6 +14,16 @@
     </select>
 
     <select id="countQuestion" resultType="int">
-        SELECT COUNT(1) FROM question
+        SELECT COUNT(1) FROM question where active = 1
+    </select>
+    <select id="myCountQuestion" resultType="int">
+        SELECT COUNT(1) FROM question WHERE creator = 1
+    </select>
+
+    <select id="getMyQuestion" parameterType="int" resultType="life.majiang.community.entity.Question">
+        select * from question where active = 1 and creator = #{creator} ORDER BY create_time DESC limit #{page},#{size}
+    </select>
+    <select id="getQuestionByid" parameterType="int" resultType="life.majiang.community.entity.Question">
+        select * from question where question_id = #{id}
     </select>
 </mapper>

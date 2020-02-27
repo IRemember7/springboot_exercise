@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title th:text="${sectionName}"></title>
     <head th:insert="~{import :: head}"></head>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span th:text="${sectionName}"></span></h2>
+            <hr>
+            <div class="media" th:each="question : ${questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded"
+                             th:src="${session.user.userImg}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="#" th:text="${question.title}"></a>
+                    </h4>
+                    <span class="text-desc"><span th:text="${question.commentCount}"></span> 个回复 • <span
+                            th:text="${question.viewCount}"></span> 次浏览 • <span
+                            th:text="${#dates.format(question.createTime,'yyyy-MM-dd HH:mm')}"></span></span>
+                </div>
+            </div>
+            <!-------------------------------------------   分页 ----------------------------------------------->
+            <nav aria-label="Page navigation" style="margin-left: 400px">
+                <ul class="pagination">
+                    <li th:class="${(nowPage!=1 && nowPage !=2)?'':'disabled'}"><a aria-label="Previous" th:href="@{/(page=1)}"><span aria-hidden="true">&lt;&lt;</span></a></li>
+                    <li th:class="${(nowPage!=1)?'':'disabled'}"><a aria-label="Previous"  th:href="@{/(page=${nowPage-1})}"><span aria-hidden="true">&lt;</span></a></li>
+                    <li th:if="${nowPage>2}" class =""><a th:href="@{/(page=${nowPage-2})}" th:text="${nowPage-2}"> </a></li>
+                    <li th:if="${nowPage>1}"class =""><a th:href="@{/(page=${nowPage-1})}" th:text="${nowPage-1}"> </a></li>
 
+                    <li class ="active"><a th:href="@{/(page=${nowPage})}" th:text="${nowPage}"> </a></li>
+                    <li th:if="${nowPage!=totalCount}"class =""><a th:href="@{/(page=${nowPage+1})}" th:text="${nowPage+1}"> </a></li>
+                    <li th:if="${nowPage!=totalCount-1 && nowPage !=totalCount}"class =""><a th:href="@{/(page=${nowPage+2})}" th:text="${nowPage+2}"> </a></li>
+
+                    <li th:if="${nowPage<3}" class =""><a th:href="@{/(page=${nowPage+3})}" th:text="${nowPage+3}"> </a></li>
+                    <li th:if="${nowPage<2}" class =""><a th:href="@{/(page=${nowPage+4})}" th:text="${nowPage+4}"> </a></li>
+                    <li th:class="${(nowPage!=totalCount)?'':'disabled'}"><a aria-label="Previous" th:href="@{/(page=${nowPage+1})}"><span aria-hidden="true" >&gt;</span></a></li>
+                    <li th:class="${(nowPage!=totalCount-1 && nowPage !=totalCount)?'':'disabled'}"><a aria-label="Previous" th:href="@{/(page=${totalCount})}"><span aria-hidden="true">&gt;&gt;</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="list-group section">
+                <a href="/profile/questions"
+                   th:class="${section == 'questions'}? 'active list-group-item' : 'list-group-item'">我的问题</a>
+                <a href="/profile/replies"
+                   th:class="${section == 'replies'}? 'active list-group-item' : 'list-group-item'">
+                    最新回复
+                    <span class="badge"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

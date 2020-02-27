@@ -14,5 +14,12 @@ public interface QuestionMapper {
 
     List<Question> getIndexQuestion(@Param("page")int page ,@Param("size") int size);
 
+//    查找数据库共有多少条数据
     int countQuestion();
+
+    int myCountQuestion(@Param("creator")int creator);
+
+    List<Question> getMyQuestion(@Param("page")int page ,@Param("size") int size,@Param("creator")int creator);
+
+    Question getQuestionByid(@Param("id") int id);
 }

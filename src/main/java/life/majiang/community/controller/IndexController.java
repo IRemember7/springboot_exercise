@@ -22,11 +22,11 @@ public class IndexController {
         int totalCount = indexService.countQuestion();
         //每页大小
         int pageSize = 5;
-        PageResult pageResult = new PageResult(totalCount,pageSize,page);
+        PageResult pageResult = new PageResult(totalCount,pageSize,page);//页面帮助类
         List<Questiondto> questiondtos = indexService.getIndexQuestion(pageResult);
         model.addAttribute("questions",questiondtos);
-        model.addAttribute("nowPage",page);
-        model.addAttribute("totalCount",pageResult.getTotalPage());
+        model.addAttribute("nowPage",page);//当前页
+        model.addAttribute("totalCount",pageResult.getTotalPage());//总页数
         return "index";
     }
 }

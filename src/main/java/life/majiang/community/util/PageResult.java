@@ -7,12 +7,15 @@ import java.util.List;
 
 @Data
 public class PageResult implements Serializable {
-    //总记录数
+    //总记录数  总共多少条数据
     private int totalCount;
-    //每页记录数
+
+    //每页记录数  每页多少条数据
     private int pageSize;
-    //总页数
+
+    //总页数  总页数
     private int totalPage;
+
     //数据库当前页数的起始数
     private int currPage;
 
